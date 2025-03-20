@@ -3,34 +3,1024 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netr</title>
+    <title>Netr AI - Advanced Threat Detection for Schools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="/api/placeholder/800/450" as="image">
     <style>
-        body {
+        :root {
+            --primary: #00B9AE;
+            --primary-dark: #009B92;
+            --secondary: #00D6CA;
+            --accent: #FF4A6E;
+            --dark: #111827;
+            --darker: #0B0F1A;
+            --gray-dark: #1F2937;
+            --gray: #374151;
+            --gray-light: #6B7280;
+            --gray-lighter: #9CA3AF;
+            --light: #F9FAFB;
+            --success: #10B981;
+            --warning: #FBBF24;
+            --text: #E5E7EB;
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 15px;
+            --transition-speed: 0.3s;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--darker);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            top: 0;
+        }
+        
+        nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
-            background-color: black;
-            font-family: Arial, sans-serif;
+            padding: 20px 0;
         }
-        .image-container {
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border-radius: 8px;
+            color: var(--darker);
+            overflow: hidden;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, var(--gray-dark) 0%, var(--darker) 100%);
+            color: var(--light);
             text-align: center;
-            background-color: black;
         }
-        img {
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-cta .cta-button {
+            padding: 15px 30px;
+            font-size: 18px;
+        }
+        
+        .hero-cta .cta-button.secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .hero-cta .cta-button.secondary:hover {
+            background-color: rgba(77, 120, 255, 0.1);
+        }
+        
+        .hero-image {
+            max-width: 300px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            background-color: transparent;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px !important;
+        }
+        
+        .hero-image img {
             max-width: 100%;
             height: auto;
+            display: inline-block;
+            filter: brightness(1.1);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: var(--gray-lighter);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--gray-dark);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--gray);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(77, 120, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .feature-card p {
+            color: var(--gray-lighter);
+        }
+        
+        .how-it-works {
+            background-color: var(--darker);
+        }
+        
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .step-number {
+            flex: 0 0 80px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(77, 120, 255, 0.3);
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        
+        .step-content p {
+            color: var(--gray-lighter);
+        }
+        
+        .testimonials {
+            background: linear-gradient(135deg, var(--gray-dark) 0%, var(--darker) 100%);
+            color: var(--light);
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(31, 41, 55, 0.6);
+            border-radius: 10px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gray);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .testimonial-content {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--text);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: 700;
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+        
+        .author-info p {
+            opacity: 0.8;
+            font-size: 14px;
+            color: var(--gray-lighter);
+        }
+        
+        .cta-section {
+            text-align: center;
+            background-color: var(--dark);
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, var(--gray-dark) 0%, var(--darker) 100%);
+            border-radius: 15px;
+            padding: 45px;
+            color: var(--light);
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--gray);
+        }
+        
+        .cta-box h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-box p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-box .cta-button {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light);
+            padding: 15px 30px;
+            font-size: 18px;
+            display: inline-block;
+            border: none;
+        }
+        
+        .cta-box .cta-button:hover {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, var(--secondary) 100%);
+            box-shadow: 0 5px 15px rgba(77, 120, 255, 0.3);
+        }
+        
+        footer {
+            background-color: var(--darker);
+            color: var(--light);
+            padding: 45px 0 20px;
+            border-top: 1px solid var(--gray);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .footer-logo-icon {
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--darker);
+            overflow: hidden;
+        }
+        
+        .footer-logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .footer-about {
+            max-width: 300px;
+            color: var(--gray-lighter);
+            margin-bottom: 20px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+            color: var(--gray-lighter);
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--light);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--gray-lighter);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--gray);
+            padding-top: 30px;
+            text-align: center;
+            color: var(--gray-lighter);
+            font-size: 14px;
+        }
+        
+        .alert-demo {
+            margin: 40px auto 0;
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            max-width: 800px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 74, 110, 0.2);
+        }
+        
+        .alert-header {
+            background-color: var(--accent);
+            color: var(--light);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .alert-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+        
+        .alert-body {
+            padding: 20px;
+            background-color: var(--gray-dark);
+            display: flex;
+            gap: 20px;
+        }
+        
+        .alert-image {
+            flex: 0 0 200px;
+            background-color: var(--dark);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--gray);
+        }
+        
+        .alert-details {
+            flex: 1;
+        }
+        
+        .alert-details h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .alert-details ul {
+            list-style: none;
+        }
+        
+        .alert-details li {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+            align-items: flex-start;
+            color: var(--text);
+        }
+        
+        .alert-details li strong {
+            min-width: 100px;
+            color: var(--gray-lighter);
+        }
+        
+        .alert-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .alert-button {
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        
+        .alert-button.primary {
+            background-color: var(--accent);
+            color: var(--light);
+        }
+        
+        .alert-button.secondary {
+            background-color: var(--gray);
+            color: var(--text);
+        }
+        
+        .alert-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            transition: all 0.2s;
+        }
+        
+        @media (max-width: 900px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .testimonial-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
+            
+            .cta-box {
+                padding: 30px;
+            }
+            
+            .alert-body {
+                flex-direction: column;
+            }
+            
+            .alert-image {
+                width: 100%;
+                height: 150px;
+            }
+        }
+        
+        /* Add responsive font sizing */
+        font-size: 16px;
+        
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+        
+        /* Improve accessibility */
+        .cta-button, .alert-button {
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            
+            &:focus {
+                outline: 2px solid var(--primary);
+                outline-offset: 2px;
+            }
+        }
+        
+        /* Add reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Add mobile menu functionality */
+        .nav-toggle {
+            display: none;
+            
+            @media (max-width: 600px) {
+                display: block;
+                /* Add mobile menu button styles */
+            }
+        }
+        
+        .nav-links {
+            @media (max-width: 600px) {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--darker);
+                padding: 20px;
+                flex-direction: column;
+                align-items: center;
+                transform: translateY(-100%);
+                transition: transform var(--transition-speed);
+                
+                &.active {
+                    transform: translateY(0);
+                }
+            }
         }
     </style>
 </head>
 <body>
-    <div class="image-container">
-      <a href="mailto:shailesh@getnetr.com" target="_blank">
-          <img src="netr-logo.png" alt="Netr Logo">
-      </a>
-    </div>
-</body>
-</html> 
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="netr-logo.png" alt="Netr AI Logo" width="20" height="20">
+                    </div>
+                    Netr AI
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <a href="mailto:shailesh@getnetr.com?subject=Netr%20AI%20Demo%20Request" class="cta-button">Request Demo</a>
+            </nav>
+        </div>
+    </header>
 
+    <section class="hero">
+        <div class="container">
+            <div class="hero-image" style="margin-bottom: 40px;">
+                <img src="netr-logo.png" alt="Netr AI Security System Logo">
+            </div>
+            <h1>Protecting Schools with AI-Powered Threat Detection</h1>
+            <p>Our advanced computer vision system detects weapons in real-time, sending instant alerts to school administrators when threats are identified.</p>
+            <div class="hero-cta">
+                <a href="mailto:shailesh@getnetr.com?subject=Netr%20AI%20Demo%20Request" class="cta-button">Request Demo</a>
+                <a href="#how-it-works" class="cta-button secondary">How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Advanced Security Features</h2>
+                <p>Our AI-powered system is designed specifically for school environments, providing reliable threat detection with minimal false alarms.</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h3>Real-Time Weapon Detection</h3>
+                    <p>Our custom Vision AI model identifies firearms with high accuracy, even in crowded or partially obscured conditions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h3>Instant Notifications</h3>
+                    <p>Alerts are sent within seconds to designated administrators via mobile app, email, and text message with location details.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3>Easy Integration</h3>
+                    <p>Seamlessly connects with existing camera systems without requiring expensive hardware upgrades or replacements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Privacy-Focused</h3>
+                    <p>All processing happens locally with no facial recognition, ensuring student privacy while maintaining security.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Continuous Learning</h3>
+                    <p>Our AI model improves over time, adapting to your specific environment to reduce false positives and increase accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Emergency Response Plan</h3>
+                    <p>Includes customizable emergency protocols and direct integration with local law enforcement communication systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Netr AI Works</h2>
+                <p>Our end-to-end solution seamlessly integrates with your existing camera infrastructure to provide continuous protection.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Camera Integration</h3>
+                        <p>Netr AI connects to your existing security camera network through a secure gateway device, requiring no camera replacements or upgrades.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Real-Time Monitoring</h3>
+                        <p>Our custom Vision AI model continuously analyzes camera feeds in real-time, detecting potential threats without storing or reviewing regular footage.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Threat Detection</h3>
+                        <p>When a weapon is detected, the system immediately flags the potential threat and captures relevant images while maintaining privacy compliance.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Instant Alerts</h3>
+                        <p>Administrators receive immediate notifications with location information, camera reference, and captured images through multiple channels.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Response Coordination</h3>
+                        <p>The system initiates your predetermined security protocols and can automatically alert law enforcement with critical information.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-demo">
+                <div class="alert-header">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        ALERT: Potential Threat Detected
+                    </h3>
+                    <span>March 18, 2025 • 10:24 AM</span>
+                </div>
+                <div class="alert-body">
+                    <div class="alert-image">
+                        <img src="object_detected.jpeg" alt="Alert screenshot with highlighted threat" loading="lazy" width="200" height="150">
+                    </div>
+                    <div class="alert-details">
+                        <h4>Detection Details:</h4>
+                        <ul>
+                            <li><strong>Location:</strong> East Wing, Main Hallway</li>
+                            <li><strong>Camera ID:</strong> CAM-14</li>
+                            <li><strong>Confidence:</strong> 97.8%</li>
+                            <li><strong>Detected Item:</strong> Handgun</li>
+                        </ul>
+                        <div class="alert-actions">
+                            <a href="#" class="alert-button primary">Initiate Lockdown</a>
+                            <a href="#" class="alert-button secondary">View Live Feed</a>
+                            <a href="#" class="alert-button secondary">False Alarm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trusted by School Administrators</h2>
+                <p>Hear from schools that have implemented Netr AI's detection system.</p>
+            </div>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The Netr system was surprisingly easy to implement with our existing camera setup. The AI detection accuracy is remarkable, and the support team has been exceptional throughout the process."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>Dr. James Davidson</h4>
+                            <p>Principal, Lincoln High School</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Since implementing Netr AI, our response time to potential threats has improved dramatically. The real-time alerts and easy-to-use interface make it an invaluable tool for our security team."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MS</div>
+                        <div class="author-info">
+                            <h4>Maria Santos</h4>
+                            <p>Security Director, Westfield Academy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "What impressed me most was how seamlessly Netr AI integrated with our existing security infrastructure. The false positive rate is remarkably low, giving us confidence in the system's reliability."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Robert Kim</h4>
+                            <p>Technology Director, East Valley School District</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The peace of mind that Netr AI provides is invaluable. The system's ability to detect potential threats while maintaining student privacy has made it an essential part of our security strategy."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AP</div>
+                        <div class="author-info">
+                            <h4>Dr. Amanda Peterson</h4>
+                            <p>Superintendent, Northern School District</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready to Protect Your School?</h2>
+                <p>Request a demo today and see how Netr AI can help safeguard your campus.</p>
+                <a href="mailto:shailesh@getnetr.com?subject=Netr%20AI%20Demo%20Request" class="cta-button">Request Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">
+                        <img src="netr-logo.png" alt="Netr AI Logo" width="20" height="20">
+                    </div>
+                    Netr AI
+                </div>
+                <div class="footer-about">
+                    <h3>About Us</h3>
+                    <p>Netr AI is dedicated to providing advanced threat detection solutions for schools. Our mission is to keep students safe and secure.</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <a href="https://x.com/getnetr" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4l11.5 11.5M4 20L20 4" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12a10 10 0 0-20 0 10 10 0 0 0 20 0z"></path>
+                            <path d="M12 2a15.3 15.3 0 0 0 15 15 15.3 15.3 0 0 0-15-15z"></path>
+                            <path d="M16.5 7.5h.01"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Netr AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
