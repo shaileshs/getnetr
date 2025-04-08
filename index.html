@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="/api/placeholder/800/450" as="image">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript" src="js/emailjs-config.js"></script>
     <style>
         :root {
             --primary: #00B9AE;
@@ -719,6 +721,133 @@
                 }
             }
         }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: var(--gray-dark);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            margin: auto;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--gray);
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--gray-lighter);
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--light);
+        }
+        
+        .demo-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            color: var(--light);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--gray);
+            background-color: var(--darker);
+            color: var(--light);
+            font-size: 16px;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light);
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .submit-button:hover {
+            opacity: 0.9;
+        }
+        
+        .submit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .form-message {
+            padding: 10px;
+            border-radius: var(--border-radius-sm);
+            display: none;
+        }
+        
+        .form-message.success {
+            display: block;
+            background-color: var(--success);
+            color: var(--light);
+        }
+        
+        .form-message.error {
+            display: block;
+            background-color: var(--accent);
+            color: var(--light);
+        }
     </style>
 </head>
 <body>
@@ -735,9 +864,9 @@
                     <a href="#features">Features</a>
                     <a href="#how-it-works">How It Works</a>
                     <a href="#testimonials">Testimonials</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#" onclick="openModal(); return false;">Contact</a>
                 </div>
-                <a href="mailto:shailesh@getnetr.com?subject=Netr%20AI%20Demo%20Request" class="cta-button">Request Demo</a>
+                <a href="#" onclick="openModal(); return false;" class="cta-button">Request Demo</a>
             </nav>
         </div>
     </header>
@@ -750,7 +879,7 @@
             <h1>Protecting Schools with AI-Powered Threat Detection</h1>
             <p>Our advanced computer vision system detects weapons in real-time, sending instant alerts to school administrators when threats are identified.</p>
             <div class="hero-cta">
-                <a href="mailto:shailesh@getnetr.com?subject=Netr%20AI%20Demo%20Request" class="cta-button">Request Demo</a>
+                <a href="#" onclick="openModal(); return false;" class="cta-button">Request Demo</a>
                 <a href="#how-it-works" class="cta-button secondary">How It Works</a>
             </div>
         </div>
@@ -973,7 +1102,7 @@
             <div class="cta-box">
                 <h2>Ready to Protect Your School?</h2>
                 <p>Request a demo today and see how Netr AI can help safeguard your campus.</p>
-                <a href="mailto:shailesh@getnetr.com?subject=Netr%20AI%20Demo%20Request" class="cta-button">Request Demo</a>
+                <a href="#" onclick="openModal(); return false;" class="cta-button">Request Demo</a>
             </div>
         </div>
     </section>
@@ -1012,8 +1141,8 @@
                         <li><a href="#features">Features</a></li>
                         <li><a href="#how-it-works">How It Works</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="#" onclick="openModal(); return false;">Contact</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -1022,5 +1151,130 @@
             </div>
         </div>
     </footer>
+
+    <!-- Demo Request Modal -->
+    <div id="demoModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2 style="color: var(--light); margin-bottom: 20px;">Request a Demo</h2>
+            <form id="demoForm" class="demo-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="organization">School/Organization</label>
+                    <input type="text" id="organization" name="organization" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your school's security needs..."></textarea>
+                </div>
+                <div id="formMessage" class="form-message"></div>
+                <button type="submit" class="submit-button">Request Demo</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal() {
+            document.getElementById('demoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('demoModal').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('demoForm').reset();
+            document.getElementById('formMessage').className = 'form-message';
+            document.getElementById('formMessage').textContent = '';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('demoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const formMessage = document.getElementById('formMessage');
+            
+            // Validate form
+            const name = this.name.value.trim();
+            const email = this.email.value.trim();
+            const organization = this.organization.value.trim();
+            const message = this.message.value.trim();
+
+            if (!name || !email || !organization) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Please fill in all required fields.';
+                return;
+            }
+
+            // Show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+            
+            // Prepare template parameters
+            const templateParams = {
+                to_email: EMAILJS_CONFIG.TO_EMAIL,
+                from_name: name,
+                from_email: email,
+                name: name,
+                email: email,
+                organization: organization,
+                message: message || 'No additional message provided.'
+            };
+
+            // Send email using EmailJS
+            emailjs.send(
+                EMAILJS_CONFIG.SERVICE_ID,
+                EMAILJS_CONFIG.TEMPLATE_ID,
+                templateParams
+            )
+            .then(function() {
+                formMessage.className = 'form-message success';
+                formMessage.textContent = 'Thank you! We will contact you soon about the demo.';
+                submitButton.textContent = 'Sent Successfully!';
+                setTimeout(() => {
+                    closeModal();
+                    submitButton.textContent = 'Request Demo';
+                }, 3000);
+            })
+            .catch(function(error) {
+                console.error('EmailJS error:', error);
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Sorry, there was an error. Please try again or email us directly at ' + EMAILJS_CONFIG.TO_EMAIL;
+                submitButton.textContent = 'Request Demo';
+            })
+            .finally(function() {
+                submitButton.disabled = false;
+            });
+        });
+
+        // Add escape key listener to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('demoModal').classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Netr AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        :root {
+            --primary: #00B9AE;
+            --primary-dark: #009B92;
+            --secondary: #00D6CA;
+            --accent: #FF4A6E;
+            --dark: #111827;
+            --darker: #0B0F1A;
+            --gray-dark: #1F2937;
+            --gray: #374151;
+            --gray-light: #6B7280;
+            --gray-lighter: #9CA3AF;
+            --light: #F9FAFB;
+            --success: #10B981;
+            --warning: #FBBF24;
+            --text: #E5E7EB;
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 15px;
+            --transition-speed: 0.3s;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--darker);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            top: 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border-radius: 8px;
+            color: var(--darker);
+            overflow: hidden;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .privacy-content {
+            padding: 120px 0 60px;
+        }
+        
+        .privacy-content h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--light);
+        }
+        
+        .privacy-content h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: var(--primary);
+        }
+        
+        .privacy-content p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .privacy-content ul {
+            margin-bottom: 15px;
+            margin-left: 20px;
+        }
+        
+        .privacy-content li {
+            margin-bottom: 8px;
+        }
+        
+        .privacy-content a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .privacy-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: var(--darker);
+            color: var(--light);
+            padding: 45px 0 20px;
+            border-top: 1px solid var(--gray);
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .footer-logo-icon {
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--darker);
+            overflow: hidden;
+        }
+        
+        .footer-logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .footer-about {
+            max-width: 300px;
+            color: var(--gray-lighter);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--light);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--gray-lighter);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--gray);
+            padding-top: 30px;
+            text-align: center;
+            color: var(--gray-lighter);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 900px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .privacy-content h1 {
+                font-size: 28px;
+            }
+            
+            .privacy-content h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="netr-logo.png" alt="Netr AI Logo" width="20" height="20">
+                    </div>
+                    Netr AI
+                </a>
+                <a href="mailto:shailesh@getnetr.com?subject=Netr%20AI%20Question" class="cta-button">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="privacy-content">
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            
+            <p>Last Updated: June 15, 2023</p>
+            
+            <p>At Netr AI, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our threat detection services. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site or use our services.</p>
+            
+            <h2>Information We Collect</h2>
+            
+            <p>Our AI-powered threat detection system is designed with privacy as a core principle. We collect only the minimum information necessary to provide our services:</p>
+            
+            <ul>
+                <li><strong>Camera Feeds:</strong> Our system processes your existing security camera feeds to detect potential threats. We do not store or retain regular video footage.</li>
+                <li><strong>Detected Incidents:</strong> When a potential threat is detected, we capture and store only the relevant images related to that specific incident.</li>
+                <li><strong>System Configuration:</strong> Information about your camera setup and system preferences needed to provide our services.</li>
+                <li><strong>Contact Information:</strong> When you request a demo or contact us, we collect contact details such as name, email, phone number, and school/organization name.</li>
+            </ul>
+            
+            <h2>How We Use Your Information</h2>
+            
+            <p>We use the information we collect for the following purposes:</p>
+            
+            <ul>
+                <li>To provide, maintain, and improve our threat detection services</li>
+                <li>To detect potential threats and send alerts to designated administrators</li>
+                <li>To respond to your requests, questions, and concerns</li>
+                <li>To improve the accuracy of our AI models while respecting privacy</li>
+                <li>To send you updates about our services, system performance, and security recommendations</li>
+            </ul>
+            
+            <h2>Privacy-First Technology Design</h2>
+            
+            <p>Our system is designed with the following privacy-protecting features:</p>
+            
+            <ul>
+                <li><strong>No Facial Recognition:</strong> Our system does not use facial recognition technology and does not identify individuals.</li>
+                <li><strong>Local Processing:</strong> Most data processing occurs locally on your premises, minimizing data transmission.</li>
+                <li><strong>Selective Storage:</strong> We only store images related to detected potential threats, not regular camera footage.</li>
+                <li><strong>Limited Data Retention:</strong> Incident data is retained only for the period necessary to ensure school safety and as required by applicable regulations.</li>
+            </ul>
+            
+            <h2>Data Sharing and Disclosure</h2>
+            
+            <p>We do not sell your data. We may share information in the following limited circumstances:</p>
+            
+            <ul>
+                <li><strong>With Your Consent:</strong> We may share information with third parties when you have given us your consent to do so.</li>
+                <li><strong>Service Providers:</strong> We may share information with trusted service providers who assist us in operating our services and serving our users.</li>
+                <li><strong>Legal Requirements:</strong> We may disclose information when required by law or in response to valid requests by public authorities.</li>
+                <li><strong>Safety and Security:</strong> We may share information to protect the safety of our users, the public, or our services.</li>
+            </ul>
+            
+            <h2>Data Security</h2>
+            
+            <p>We implement appropriate technical and organizational measures to protect the security of all information we process. However, no method of electronic transmission or storage is 100% secure, and we cannot guarantee absolute security.</p>
+            
+            <h2>Children's Privacy</h2>
+            
+            <p>Our services are designed for school environments, but our website and services are not directed at children under 13. We do not knowingly collect personal information from children under 13. If we learn we have collected personal information from a child under 13, we will delete that information as quickly as possible.</p>
+            
+            <h2>Your Rights</h2>
+            
+            <p>Depending on your location, you may have certain rights regarding your personal information, including:</p>
+            
+            <ul>
+                <li>The right to access personal information we hold about you</li>
+                <li>The right to request that we correct or update your personal information</li>
+                <li>The right to request that we delete your personal information</li>
+                <li>The right to object to or restrict certain processing of your data</li>
+            </ul>
+            
+            <p>To exercise these rights, please contact us at <a href="mailto:privacy@getnetr.com">privacy@getnetr.com</a>.</p>
+            
+            <h2>Changes to This Privacy Policy</h2>
+            
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.</p>
+            
+            <h2>Contact Us</h2>
+            
+            <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+            
+            <p>
+                Netr AI<br>
+                Email: <a href="mailto:privacy@getnetr.com">privacy@getnetr.com</a>
+            </p>
+            
+            <a href="index.html" class="back-link">← Back to Homepage</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <img src="netr-logo.png" alt="Netr AI Logo" width="20" height="20">
+                        </div>
+                        Netr AI
+                    </div>
+                    <div class="footer-about">
+                        <p>Netr AI is dedicated to providing advanced threat detection solutions for schools. Our mission is to keep students safe and secure.</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#how-it-works">How It Works</a></li>
+                        <li><a href="index.html#testimonials">Testimonials</a></li>
+                        <li><a href="mailto:shailesh@getnetr.com?subject=Netr%20AI%20Question">Contact</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Netr AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
